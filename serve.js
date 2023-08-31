@@ -27,9 +27,7 @@ app.post('/ussd', async (req, res) => {
             const question = textParts[1];
             try {
                 const outcome = await openai.askAboutAgriculture(question);
-                response = outcome.status === 'success'
-                    ? `END ${outcome.message}`
-                    : selectedLanguage === '1' ? 'END Sorry, an error occurred. Please try again.' : 'END Samahani, kosa limetokea. Tafadhali jaribu tena.';
+                response = `END ${outcome}`
             } catch (error) {
                 response = selectedLanguage === '1'
                     ? 'END An error occurred while processing your request. Please try again.'
